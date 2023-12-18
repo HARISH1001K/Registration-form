@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+</head>
+<body>
+
+    <!-- table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of details">
+                <td>{{row.id}}</td>
+                <td>{{row.firstname}}</td>
+                <td>{{row.lastname}}</td>
+                <td>{{row.email}}</td>
+                <td>{{row.mobile}}</td>
+                <td>{{row.gender}}</td>
+                <td>{{row.country}}</td>
+                <td>{{row.state}}</td>
+                <td>{{row.city}}</td>
+
+                <td>
+                    <button (click)="onEdit(row)" class="btn btn-info"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                   
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deldetails(row)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="registerForm">
+
+              
+                <!-- Name -->
+                <!-- First Name -->
+                <div class="row" >
+                    <div class="col mb-3"><label for="firstname">First Name</label></div>
+                    <div class="col mb-3"><input type="text" formControlName="firstname" id="firstname"></div> 
+                </div>
+                <!-- Last Name -->
+                <div class="row">
+                    <div class="col mb-3"><label for="lastname">Last Name</label>
+                    </div>
+                    <div class="col mb-3"><input type="text" formControlName="lastname" id="lastname">
+                        
+                    </div>
+                </div>
+            
+                <!-- Mobile Number -->
+                <div class="row">
+                    <div class="col mb-3"><label for="mobile">Mobile No</label></div>
+                    <div class="col mb-3"><input type="number" formControlName="mobile" id="mob"></div>     
+                </div>
+            
+                <!-- Email -->
+                <div class="row">
+                    <div class="col mb-3"><label for="email">Email</label>
+                    </div>
+                    <div class="col mb-3"><input type="text"  formControlName="email" id="email"></div>
+                </div>
+            
+                <!-- Gender -->
+                <div class="row">
+                    <div class="col mb-3"><label>Gender</label></div>
+                    <div class="col mb-3">
+                        <label><input type="radio" formControlName="gender" value="Male"class="form-check-inline"> Male</label> <br>
+                        <label><input type="radio" formControlName="gender" value="Female" class="form-check-inline"> Female</label>
+                    </div>
+                </div>
+            
+                        <!-- Country, State, City -->
+                        <div class="row">
+                          <div class="col mb-3"><label for="country">Country</label>
+                          </div>
+                          <div class="col mb-3">
+                              
+                            <select id="country" formControlName="country"  (change)="onSelectCountry_one()" >
+                              <option value="0" >Select a country</option>
+                              <option *ngFor="let country of countries_one?.countries" [value]="country.name">{{country.name}}</option>
+                              <!-- Add more options as needed -->
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col mb-3"><label for="state">State</label>
+                          </div>
+                          <div class="col mb-3">   
+                            <select id="state" formControlName="state"  (change)="onSelectState_one()"  >
+                              <option value="0" >Select a State</option>
+                              <option *ngFor="let state of states_one" [value]="state.name">{{state.name}}</option>
+                            </select>
+                          </div> 
+                        </div>
+                        <div class="row">
+                          <div class="col mb-3"><label for="city">City</label>
+                          </div>
+                          <div class="col mb-3">
+                              
+                            <select id="city" formControlName="city">
+                              <option value="" disabled>Select a city</option>
+                              <option  *ngFor="let city of cities_one" [value]="city.name">{{city.name}}</option>                                                       
+                          </select>
+                          </div>                          
+                        </div>
+            
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updetails()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>  
+
+</body>
+</html>
+
+
+
+

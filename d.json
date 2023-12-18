@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "firstname": "Harish",
+      "lastname": "k",
+      "email": "hdbcjsd@gmail.com",
+      "mobile": "3434543344",
+      "gender": "Male",
+      "country": "india",
+      "state": "TamilNadu",
+      "city": "chennai"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
